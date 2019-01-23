@@ -1,6 +1,6 @@
 package abl.actions;
 
-import game.Chaser;
+import game.GameEngine;
 
 import java.awt.Point;
 /**
@@ -14,6 +14,6 @@ public class MoveRight extends BaseAction {
 	 * Sets the trajectory of the player to move right.
 	 */
 	public void execute(Object[] args) {
-		Chaser.getInstance().setChaserTrajectory(new Point(Chaser.ChaserSpeed, 0));
+		GameEngine.getInstance().setChaserTrajectory(new Point(GameEngine.ChaserSpeed, 0));
 	}
 }

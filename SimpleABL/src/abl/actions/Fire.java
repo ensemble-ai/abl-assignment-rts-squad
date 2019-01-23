@@ -1,6 +1,6 @@
 package abl.actions;
 
-import game.Chaser;
+import game.GameEngine;
 
 import java.awt.Point;
 /**
@@ -20,7 +20,7 @@ public class Fire extends BaseAction {
 	 *  - 3: target y position
 	 */
 	public void execute(Object[] args) {
-		Chaser.getInstance().fireChaserBullet(
+		GameEngine.getInstance().fireChaserBullet(
 				new Point((Integer)args[0], (Integer)args[1]), 
 				new Point((Integer)args[2], (Integer)args[3]));
 	}

@@ -1,6 +1,6 @@
 package runner;
 
-import game.Chaser;
+import game.GameEngine;
 
 public class Runner {
 

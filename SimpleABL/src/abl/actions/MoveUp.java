@@ -1,6 +1,6 @@
 package abl.actions;
 
-import game.Chaser;
+import game.GameEngine;
 
 import java.awt.Point;
 /**
@@ -14,6 +14,6 @@ public class MoveUp extends BaseAction {
 	 * Sets the trajectory of the player to move up.
 	 */
 	public void execute(Object[] args) {
-		Chaser.getInstance().setChaserTrajectory(new Point(0, -Chaser.ChaserSpeed));
+		GameEngine.getInstance().setChaserTrajectory(new Point(0, -GameEngine.ChaserSpeed));
 	}
 }

@@ -1,6 +1,6 @@
 package abl.sensors;
 
-import game.Chaser;
+import game.GameEngine;
 import abl.runtime.BehavingEntity;
 import abl.wmes.ChaserWME;
 /**
@@ -17,6 +17,6 @@ public class ChaserSensor extends SerialSensor {
  
 		BehavingEntity.getBehavingEntity().deleteAllWMEClass("ChaserWME");
 		BehavingEntity.getBehavingEntity().addWME(
-				new ChaserWME(Chaser.getInstance().getChaserLocation(), Chaser.getInstance().getChaserTrajectory()));
+				new ChaserWME(GameEngine.getInstance().getChaserLocation(), GameEngine.getInstance().getChaserTrajectory()));
 	}
 }

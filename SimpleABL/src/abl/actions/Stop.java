@@ -1,6 +1,6 @@
 package abl.actions;
 
-import game.Chaser;
+import game.GameEngine;
 
 import java.awt.Point;
 /**
@@ -14,6 +14,6 @@ public class Stop extends BaseAction {
 	 * Stops the chaser.
 	 */
 	public void execute(Object[] args) {
-		Chaser.getInstance().setChaserTrajectory(new Point(0,0));
+		GameEngine.getInstance().setChaserTrajectory(new Point(0,0));
 	}
 }
