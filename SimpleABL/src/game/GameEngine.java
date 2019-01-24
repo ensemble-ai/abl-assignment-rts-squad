@@ -31,8 +31,11 @@ public class GameEngine extends JPanel implements KeyListener {
 	/** location of the chaser */
 	private Point chaserLocation = new Point((int)(dimensions.x*Math.random()), (int)(dimensions.y*Math.random()));
 
+	/** the list of bots */
+	private ArrayList<Bot> bots = new ArrayList<Bot>();
+	
 	/** trajectory of the chaser */
-	private Point  = new Point(0, 0);
+	private Point chaserTrajectory = new Point(0, 0);
 
 	/** size of the player character */
 	private static final int playerSize = 10;
@@ -95,6 +98,8 @@ public class GameEngine extends JPanel implements KeyListener {
 		frame.setResizable(false);
 		frame.setVisible(true);
 
+		bots.add(new Bot());
+		
 		// spawn an update thread
 		new Thread() {
 			public void run() {
@@ -132,7 +137,12 @@ public class GameEngine extends JPanel implements KeyListener {
 
 		g.setColor(Color.RED);
 		g.fillRect(chaserLocation.x, chaserLocation.y, playerSize, playerSize);
-
+		
+		for (Bot bot : this.bots) {
+			g.setColor(Color.RED);
+			g.fillRect(bot.getX(), bot.getY(), playerSize, playerSize);
+		}
+		
 		g.setColor(Color.BLACK);
 		for (Bullet bullet : bullets) {
 			g.fillRect(bullet.getX() + (playerSize - bulletSize)/2, bullet.getY() + (playerSize - bulletSize)/2, bulletSize, bulletSize);
