@@ -8,7 +8,7 @@ public class Bot {
 	public static final int Size = 10;
 	
 	static int IdCount = 0;
-	
+
 	/** Location of the bot */
 	private Point location;
 	
@@ -56,8 +56,6 @@ public class Bot {
 	public int getId() {
 		return id;
 	}
-	
-	
 
 	public int getSize() {
 		return size;
@@ -74,7 +72,4 @@ public class Bot {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
-	
-	
 }
