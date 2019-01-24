@@ -32,7 +32,7 @@ behaving_entity ChaserAgent {
 	 * that it is responsible for managing and the Java sensor class that implements the functionality. 
 	 */
     register wme PlayerWME with PlayerSensor;
-    register wme ChaserWME with ChaserSensor;
+    register wme BotWME with BotSensor;
 
 	/**
 	 * Defines a variable scope to the agent, which can be used and modified in behaviors. 
@@ -40,7 +40,7 @@ behaving_entity ChaserAgent {
 	 * It is also possible to use constants from a Java interface (e.g.):
      * constants game.Constants;   
 	 */ 
-	int ChaserSpeed = 2;	
+	int botSpeed = 2;	
 
 	/**
 	 * After an initial delay, continuously fire bullets. 
@@ -51,17 +51,17 @@ behaving_entity ChaserAgent {
 	}
 
     /**
-     * Fires a bullet at the player character using the chaser position at the source and the player position as the target
+     * Fires a bullet at the player character using the bot position at the source and the player position as the target
      *
      * Each fire action is followed by a cooldown period. 
      */
 	sequential behavior fire() {
 		precondition {
 			(PlayerWME locationX::playerX locationY::playerY)	// locationX invokes PlayerMWE.getLocationX() 
-			(ChaserWME locationX::chaserX locationY::chaserY)   // :: is used to bind properties to behavior scoped variables
+			(BotWME locationX::botX locationY::botY)   // :: is used to bind properties to behavior scoped variables
 		}
 
-		act fire(chaserX, chaserY, playerX, playerY);	
+		act fire(botX, botY, playerX, playerY);	
 		subgoal Wait(500);
 	}
 
@@ -73,7 +73,7 @@ behaving_entity ChaserAgent {
 	}
 
 	/**
-	 * Moves the chaser up if the player is above the chaser.
+	 * Moves the bot up if the player is above the bot.
 	 * 
 	 * Note: The agent prefers vertical over horizonal movement, because the move up and move down behaviors have 
 	 * a higher specificity than the other move behaviors. Therefore, if the agent needs to be moved up or down,
@@ -82,8 +82,8 @@ behaving_entity ChaserAgent {
 	sequential behavior move() {
 		precondition {
 			(PlayerWME locationY::playerY)
-			(ChaserWME locationY::chaserY) 
-			(chaserY > (playerY + ChaserSpeed))
+			(BotWME locationY::botY) 
+			(botY > (playerY + botSpeed))
 		}
 		specificity 3;
  
@@ -91,13 +91,13 @@ behaving_entity ChaserAgent {
 	}
  	
 	/**
-	 * Moves the chaser down if the player is below the chaser.
+	 * Moves the bot down if the player is below the bot.
 	 */
 	sequential behavior move() {
 		precondition {
 			(PlayerWME locationY::playerY)
-			(ChaserWME locationY::chaserY) 
-			(chaserY < (playerY - ChaserSpeed))
+			(BotWME locationY::botY) 
+			(botY < (playerY - botSpeed))
 		}
 		specificity 3;
 
@@ -105,13 +105,13 @@ behaving_entity ChaserAgent {
 	}
  	 
 	/**
-	 * Moves the chaser left if the player to the left of the chaser.
+	 * Moves the bot left if the player to the left of the bot.
 	 */
 	sequential behavior move() {
 		precondition {
 			(PlayerWME locationX::playerX)
-			(ChaserWME locationX::chaserX) 
-			(chaserX > (playerX + ChaserSpeed))
+			(BotWME locationX::botX) 
+			(botX > (playerX + botSpeed))
 		}
 		specificity 2;
 
@@ -119,13 +119,13 @@ behaving_entity ChaserAgent {
 	}
 
 	/**
-	 * Moves the chaser right if the player to the right of the chaser.
+	 * Moves the bot right if the player to the right of the bot.
 	 */
 	sequential behavior move() {
 		precondition { 
 			(PlayerWME locationX::playerX)
-			(ChaserWME locationX::chaserX) 
-			(chaserX < (playerX - ChaserSpeed))
+			(BotWME locationX::botX) 
+			(botX < (playerX - botSpeed))
 		}
 		specificity 2;
 
@@ -133,11 +133,11 @@ behaving_entity ChaserAgent {
 	}
 	
 	/**
-	 * Stops the chaser.
+	 * Stops the bot.
 	 *
 	 * Of the move behaviors, this is always evaluated last due to having the lowest specificity. 
 	 * Since it is evaluated last, it is only reached if none of the other behaviors can be activited,
-	 * which means the player and chaser are overlapping. This is why there are no preconditions. 
+	 * which means the player and bot are overlapping. This is why there are no preconditions. 
 	 */
 	sequential behavior move() {
 		specificity 1;
@@ -169,7 +169,7 @@ behaving_entity ChaserAgent {
      */
     initial_tree {
     	with (priority 3) mental_act {
-			System.out.println("Starting Chaser Agent");
+			System.out.println("Starting bot Agent");
     	}
      	
     	with (priority 2) subgoal manageFiring();
