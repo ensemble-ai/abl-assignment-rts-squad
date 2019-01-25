@@ -1,5 +1,6 @@
 package abl.actions;
 
+import game.Bot;
 import game.GameEngine;
 
 import java.awt.Point;
@@ -12,8 +13,13 @@ public class Stop extends BaseAction {
 
 	/**
 	 * Stops the chaser.
+	 * args[0] - bot id
 	 */
 	public void execute(Object[] args) {
-		GameEngine.getInstance().setChaserTrajectory(new Point(0,0));
+		for(Bot b:GameEngine.getInstance().getBots()) {
+			if(b.getId() == (int)args[0]) {
+				b.setTrajectory(new Point(0, 0));
+			}
+		}
 	}
 }

@@ -20,7 +20,7 @@ public class Fire extends BaseAction {
 	 *  - 3: target y position
 	 */
 	public void execute(Object[] args) {
-		GameEngine.getInstance().fireChaserBullet(
+		GameEngine.getInstance().fireBullet(
 				new Point((Integer)args[0], (Integer)args[1]), 
 				new Point((Integer)args[2], (Integer)args[3]));
 	}

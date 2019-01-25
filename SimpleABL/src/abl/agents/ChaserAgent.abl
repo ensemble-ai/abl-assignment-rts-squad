@@ -8,6 +8,7 @@ import abl.sensors.*;
 /** 
  * A simple agent that moves towards the player and occassionally fires bullets.
  *
+ * @author Josh McCoy 1-23-2019
  * @author Ben Weber 3-7-11
  */ 
 behaving_entity ChaserAgent {
@@ -20,11 +21,11 @@ behaving_entity ChaserAgent {
 	 * The prototype parameters correspond to the types expected by the execute(object[]) method 
 	 * in the action's Java class.
 	 */
-	register act moveUp() with MoveUp;
-	register act moveDown() with MoveDown; 
-	register act moveLeft() with MoveLeft;
-	register act moveRight() with MoveRight;
-	register act stop() with Stop;
+	register act moveUp(int) with MoveUp;
+	register act moveDown(int) with MoveDown; 
+	register act moveLeft(int) with MoveLeft;
+	register act moveRight(int) with MoveRight;
+	register act stop(int) with Stop;
 	register act fire(int, int, int, int) with Fire;
 
 	/**
@@ -82,12 +83,12 @@ behaving_entity ChaserAgent {
 	sequential behavior move() {
 		precondition {
 			(PlayerWME locationY::playerY)
-			(BotWME locationY::botY) 
+			(BotWME locationY::botY id::id) 
 			(botY > (playerY + botSpeed))
 		}
 		specificity 3;
  
-		act moveUp();
+		act moveUp(id);
 	}
  	
 	/**
@@ -96,12 +97,12 @@ behaving_entity ChaserAgent {
 	sequential behavior move() {
 		precondition {
 			(PlayerWME locationY::playerY)
-			(BotWME locationY::botY) 
+			(BotWME locationY::botY id::id) 
 			(botY < (playerY - botSpeed))
 		}
 		specificity 3;
 
-		act moveDown();
+		act moveDown(id);
 	}
  	 
 	/**
@@ -110,12 +111,12 @@ behaving_entity ChaserAgent {
 	sequential behavior move() {
 		precondition {
 			(PlayerWME locationX::playerX)
-			(BotWME locationX::botX) 
+			(BotWME locationX::botX id::id) 
 			(botX > (playerX + botSpeed))
 		}
 		specificity 2;
 
-		act moveLeft();
+		act moveLeft(id);
 	}
 
 	/**
@@ -124,12 +125,12 @@ behaving_entity ChaserAgent {
 	sequential behavior move() {
 		precondition { 
 			(PlayerWME locationX::playerX)
-			(BotWME locationX::botX) 
+			(BotWME locationX::botX id::id) 
 			(botX < (playerX - botSpeed))
 		}
 		specificity 2;
 
-		act moveRight();
+		act moveRight(id);
 	}
 	
 	/**
@@ -140,8 +141,11 @@ behaving_entity ChaserAgent {
 	 * which means the player and bot are overlapping. This is why there are no preconditions. 
 	 */
 	sequential behavior move() {
+		precondition {
+			(BotWME id::id)
+		}
 		specificity 1;
-		act stop();
+		act stop(id);
 	}
 
     /**

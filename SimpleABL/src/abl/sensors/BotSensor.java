@@ -1,5 +1,6 @@
 package abl.sensors;
 
+import game.Bot;
 import game.GameEngine;
 import abl.runtime.BehavingEntity;
 import abl.wmes.BotWME;
@@ -11,12 +12,15 @@ import abl.wmes.BotWME;
 public class BotSensor extends SerialSensor {
 
 	/**
-	 * Adds a Chaser WME to working memory of the agent and deletes previous chaser WMEs in memory.
+	 * Adds a Bot WME to working memory of the agent and deletes previous chaser WMEs in memory.
 	 */
 	public void sense() {
  
 		BehavingEntity.getBehavingEntity().deleteAllWMEClass("BotWME");
-		BehavingEntity.getBehavingEntity().addWME(
-				new BotWME(GameEngine.getInstance().getChaserLocation(), GameEngine.getInstance().getChaserTrajectory()));
+		for(Bot b : GameEngine.getInstance().getBots()) {
+			BehavingEntity.getBehavingEntity().addWME(
+					new BotWME(b.getLocation(), b.getTrajectory(), b.getId()));
+		}
+		
 	}
 }

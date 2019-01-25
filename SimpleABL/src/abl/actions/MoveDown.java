@@ -1,5 +1,6 @@
 package abl.actions;
 
+import game.Bot;
 import game.GameEngine;
 
 import java.awt.Point;
@@ -12,8 +13,13 @@ public class MoveDown extends BaseAction {
 
 	/**
 	 * Sets the trajectory of the player to move down.
+	 * args[0] - bot id
 	 */
 	public void execute(Object[] args) {
-		GameEngine.getInstance().setChaserTrajectory(new Point(0,GameEngine.ChaserSpeed));
+		for(Bot b:GameEngine.getInstance().getBots()) {
+			if(b.getId() == (Integer)args[0]) {
+				b.setTrajectory(new Point(0, GameEngine.BotSpeed));
+			}
+		}
 	}
 }

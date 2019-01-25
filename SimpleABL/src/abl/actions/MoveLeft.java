@@ -1,5 +1,6 @@
 package abl.actions;
 
+import game.Bot;
 import game.GameEngine;
 
 import java.awt.Point;
@@ -12,8 +13,13 @@ public class MoveLeft extends BaseAction {
 
 	/**
 	 * Sets the trajectory of the player to move left.
+	 * args[0] - bot id
 	 */
 	public void execute(Object[] args) {
-		GameEngine.getInstance().setChaserTrajectory(new Point(-GameEngine.ChaserSpeed, 0));
+		for(Bot b:GameEngine.getInstance().getBots()) {
+			if(b.getId() == (Integer)args[0]) {
+				b.setTrajectory(new Point(-GameEngine.BotSpeed, 0));
+			}
+		}
 	}
 }
