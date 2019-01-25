@@ -106,7 +106,9 @@ public class GameEngine extends JPanel implements KeyListener {
 		this.initializeInputs();
 		
 		//spawn a single default bot
-		bots.add(new Bot());
+		Bot b = new Bot();
+		b.setLocation(new Point(dimensions.x/2, dimensions.y/2));
+		bots.add(b);
 		
 		// spawn an update thread
 		new Thread() {
@@ -143,13 +145,10 @@ public class GameEngine extends JPanel implements KeyListener {
 
 		g.setColor(Color.BLUE);
 		g.fillRect(playerLocation.x, playerLocation.y, playerSize, playerSize);
-
-		g.setColor(Color.RED);
-		g.fillRect(chaserLocation.x, chaserLocation.y, playerSize, playerSize);
-		
+	
 		for (Bot bot : this.bots) {
-			g.setColor(Color.RED);
-			g.fillRect(bot.getX(), bot.getY(), playerSize, playerSize);
+			g.setColor(bot.getColor());
+			g.fillRect(bot.getX(), bot.getY(), bot.getSize(), bot.getSize());
 		}
 		
 		g.setColor(Color.BLACK);
