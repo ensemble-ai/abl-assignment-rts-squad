@@ -1,10 +1,13 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Bot {
-
-	static int idCount = 0;
+ 
+	public static final int Size = 10;
+	
+	static int IdCount = 0;
 	
 	/** Location of the bot */
 	private Point location;
@@ -15,10 +18,15 @@ public class Bot {
 	/** unique bot ID */
 	private int id;
 
+	private Color color;
+	
+	private int size = Size;
+	
 	public Bot() {
 		this.location = new Point(0,0);
 		this.trajectory = new Point(0,0);
-		this.id = idCount++;
+		this.id = IdCount++;
+		this.color = new Color(255, 165, 0);
 	}
 
 	public Point getLocation() {
@@ -48,5 +56,25 @@ public class Bot {
 	public int getId() {
 		return id;
 	}
+	
+	
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	
 	
 }
