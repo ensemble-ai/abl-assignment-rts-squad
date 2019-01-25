@@ -22,20 +22,7 @@ public class AgentCompiler {
 	public static void main(String[] args) {
 
 		if (debugMode) {
-//			try {
-//				Abl.compileFile("src/abl/agents/ChaserAgent.abl");
-//			} catch (FileNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (CompileException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (ParseException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			Abl.main(new String[] { "-g2", "-d", "src", "src/abl/agents/ChaserAgent.abl" });
-			//Abl.main(new String[] { "-g2", "-d", "src", "src/abl/agents/ChaserAgent.abl" });
 		}
 		else {
 			Abl.main(new String[] { "-d", "src", "src/abl/agents/ChaserAgent.abl" });
