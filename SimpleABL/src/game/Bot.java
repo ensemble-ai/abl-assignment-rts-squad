@@ -9,6 +9,8 @@ public class Bot {
 	
 	static int IdCount = 0;
 
+	static int idCount = 0;
+	
 	/** Location of the bot */
 	private Point location;
 	

@@ -89,7 +89,6 @@ behaving_entity ChaserAgent {
 		specificity 3;
  
 		act moveUp(id);
-		act moveUp();
 	}
  	
 	/**
