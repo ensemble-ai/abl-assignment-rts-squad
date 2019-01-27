@@ -61,7 +61,3 @@ Questions and Answers
 *Answer:* You have the debug variable set to true in AgentCompiler.java. This tells ABL to run your agent in debug mode which opens the debugger window and automatically pauses your agent before its first decision cycle. Press the **Continue** button to proceed.
 
 [Screenshot of the ABL debugger](misc/ABLdebugger.png)
-
-*Question:*
-
-*Answer:*
