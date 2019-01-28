@@ -10,8 +10,8 @@ Starter Tasks
 --------------------
 * Add a move action that takes a (int xdir, int ydir, int id) as input.
 * Make a MoveTo behavior that moves a bot to a target location over time.
-* Add a SetColor action that takes (int r, int b, int g).
-* Add color sensing to the BotWME.
+* Add a SetColor action that takes (int r, int b, int g, int id).
+* Add color sensing to the BotWME (this includes changes to BotSensor.java and BotWME.java).
 
 Intermediate Tasks
 --------------------
@@ -30,7 +30,7 @@ Here are some spaces you can design multi-bot social interactions for but feel f
 
 Group Work Policy
 --------------------
-You may work in teams of up to 3 people.
+You may work in teams of up to 4 people.
 
 Grading
 --------------------
@@ -50,7 +50,7 @@ Questions and Answers
 
 *Answer:* The process runs in two steps: 1) compile the .abl code into .java classes and 2) run the GameEngine with the newly-generated code. To help you with this, there are two classes that have a entry point for execution (i.e. they have a '''static void main(String args[])''' function declared):
 1. **abl.build.AgentCompiler.java** - This class invokes the compile in abl.jar to transcompile .abl code into .java code.
-2. **game.GameEngine** - This launches the game. The code for your abl agent must be transpiled by abl.jar before you can run this class.
+2. **game.GameEngine.java** - This launches the game. The code for your abl agent must be transpiled by abl.jar before you can run this class.
 
 *Question:* I have changed my code and recompiled the project but the change isn't seen when I run the GameEngine class. What do I do?
 
