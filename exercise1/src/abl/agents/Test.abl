@@ -1,0 +1,32 @@
+package abl.generated;
+// the package corresponds to where generated Java files are placed.
+
+import abl.wmes.*;
+import abl.actions.*;
+import abl.sensors.*;
+
+behaving_entity Test {
+	
+	register act fire(int, int, int, int) with Fire;
+	
+	sequential behavior fireABullet() {
+		act fire(0,0,1,1);
+	}
+	
+	sequential behavior Wait(int milliseconds) {
+		long finish;
+	    mental_act { 
+	    	finish = System.currentTimeMillis() + milliseconds; 
+	    }
+	    
+	    with ( success_test { (System.currentTimeMillis() > finish) } ) wait;
+	}
+	
+	initial_tree {
+		mental_act {
+			System.out.println("The Test agent has started on initial_tree.");
+		}
+		subgoal fireABullet();
+		
+	}
+}
