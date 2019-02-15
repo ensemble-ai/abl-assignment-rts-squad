@@ -5,7 +5,7 @@ import game.GameEngine;
 
 import java.awt.Point;
 
-public class botadd extends BaseAction {
+public class BotAdd extends BaseAction {
 
 	public void execute(Object[] args) {
 		Bot b = new Bot();
