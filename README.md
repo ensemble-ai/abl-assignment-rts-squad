@@ -1,6 +1,7 @@
 
 ABL-Assignment
 ====================
+In the assignment, we create a 4 bot social interaction, where we introduce distance sensing and color sensing into the Bot Sensors and WMEs. Based on the sequential behaviors and a new Move action that computes the inter distance between player and bots, the bots move away from the player as a group and eventually after constant pursuit disappear from the scenario due to constant bullying by the player bot. The distance based sensing provides for a move action based formation pattern that keeps the 4 chaser bots together and away from the player bot. A randomized increment of escape distance is updated for the bots in response to the player's movement towards the bot. An increasing escape speed for the bots facilitates the escape of all the bots quickly following player's continuous movement towards the bots. If not, then the bots remain together and maintain the distance and group among themselves.
 
 Description
 --------------------
