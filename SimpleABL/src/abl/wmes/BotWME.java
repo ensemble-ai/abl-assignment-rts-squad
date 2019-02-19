@@ -23,10 +23,11 @@ public class BotWME extends WME {
 	/**
 	 * Instantiates a working memory element for tracking a bot.
 	 */
-	public BotWME(Point location, Point trajectory, int id) {
+	public BotWME(Point location, Point trajectory, int id, Color color) {
 		this.location = location;
 		this.trajectory = trajectory;
 		this.id = id;
+		this.color = color;
 	}
 	
 	/**
@@ -63,5 +64,13 @@ public class BotWME extends WME {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	add this code at the end
+	public Color getColor(Color color) {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }
