@@ -27,11 +27,14 @@ public class Bot {
 	private int size = Size;
 	
 	
+	private Point form;
+	
 	public Bot() {
 		this.location = new Point(0,0);
 		this.trajectory = new Point(0,0);
 		this.id = IdCount++;
-		this.color = new Color(255, 165, 0);
+		this.color = color;
+		this.form = new Point(0,0);
 	}
 
 	public Point getLocation() {
@@ -50,8 +53,6 @@ public class Bot {
 		this.trajectory = trajectory;
 	}
 	
-	
-
 	
 	public int getX( ) {
 		return this.location.x;
@@ -73,6 +74,16 @@ public class Bot {
 		return tracked;
 	}
 	
+	public Point getForm() {
+		return form;
+	}
+	
+	public void setForm(Point form) {
+		this.form = form;
+		
+	}
+
+	
 	public void setLoc(boolean tracked) {
 		this.tracked = tracked;
 	}
@@ -84,7 +95,7 @@ public class Bot {
 		return color;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setColor(int r, int g, int b) {
+		this.color = new Color(r, g, b);
 	}
 }

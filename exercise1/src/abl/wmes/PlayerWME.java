@@ -27,6 +27,7 @@ public class PlayerWME extends WME {
 	public PlayerWME(Point location, Point trajectory) {
 		this.location = location;
 		this.trajactory = trajectory;
+
 	}
 	
 	/**

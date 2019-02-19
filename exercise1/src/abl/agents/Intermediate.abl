@@ -27,9 +27,9 @@ behaving_entity ChaserAgent {
 	register act moveRight(int) with MoveRight;
 	register act stop(int) with Stop;
 	register act fire(int, int, int, int) with Fire;
-	register act newmove(int, int, int) with NewMoveAction;
-	register act setcol(int, int, int) with setColor;
-
+	register act newMove(int, int, int) with NewMoveAction;
+	register act setColor(int, int, int, int) with SetColor;
+	
 	/**
 	 * Define the sensors that add game state to working memory. Each sensor defines the name of the WME class
 	 * that it is responsible for managing and the Java sensor class that implements the functionality. 
@@ -72,8 +72,9 @@ behaving_entity ChaserAgent {
 	 * Continuously move towards the player character.
 	 */
 	sequential behavior manageMovement() {
+		with (persistent) subgoal newMove();
 		with (persistent) subgoal move();
-		with (persistent) subgoal newmove();
+		
 	}
 
 	/**
@@ -83,72 +84,18 @@ behaving_entity ChaserAgent {
 	 * a higher specificity than the other move behaviors. Therefore, if the agent needs to be moved up or down,
 	 * they are chosen first. 
 	 */ 
-	sequential behavior newmove(){
+	
+	sequential behavior newMove() {
 		precondition {
-			(PlayerWME locationY::playerY locationX::playerX)
-			(BotWME locationY::botY id::id) 
-			(botY >= 370 && botX >= 560)
+			(PlayerWME locationX::playerX locationY::playerY)
+			(BotWME locationX::botX locationY::botY id::id) 
+	
 		}
 		specificity 2;
- 
-		act newmove(id);
+ 		act NewMoveAction(id, playerX, playerY);
 	}
 	
-	sequential behavior newmove(){
-		precondition {
-			(PlayerWME locationY::playerY locationX::playerX)
-			(BotWME locationY::botY id::id) 
-			(botY >= 370 && botX >= 560)
-		}
-		specificity 2;
- 
-		act newmove(id);
-	}
-	
-	sequential behavior newmove(){
-		precondition {
-			(PlayerWME locationY::playerY locationX::playerX)
-			(BotWME locationY::botY id::id) 
-			(botY >= 370 && botX >= 560)
-		}
-		specificity 2;
- 
-		act newmove(id);
-	}
-	
-	sequential behavior newmove(){
-		precondition {
-			(PlayerWME locationY::playerY locationX::playerX)
-			(BotWME locationY::botY id::id) 
-			(botY >= 370 && botX >= 560)
-		}
-		specificity 2;
- 
-		act newmove(id);
-	}
-	
-	sequential behavior newmove(){
-		precondition {
-			(PlayerWME locationY::playerY locationX::playerX)
-			(BotWME locationY::botY id::id) 
-			(botY > (playerY + botSpeed))
-		}
-		specificity 2;
- 
-		act newmove(id);
-	}
-		
-	sequential behavior move() {
-		precondition {
-			(PlayerWME locationY::playerY)
-			(BotWME locationY::botY id::id) 
-			(botY > (playerY + botSpeed))
-		}
-		specificity 3;
- 
-		act moveUp(id);
-	}
- 	
+	 	
 	/**
 	 * Moves the bot down if the player is below the bot.
 	 */
@@ -158,7 +105,7 @@ behaving_entity ChaserAgent {
 			(BotWME locationY::botY id::id) 
 			(botY < (playerY - botSpeed))
 		}
-		specificity 3;
+		specificity 2;
 
 		act moveDown(id);
 	}
@@ -166,17 +113,7 @@ behaving_entity ChaserAgent {
 	/**
 	 * Moves the bot left if the player to the left of the bot.
 	 */
-	sequential behavior move() {
-		precondition {
-			(PlayerWME locationX::playerX)
-			(BotWME locationX::botX id::id) 
-			(botX > (playerX + botSpeed))
-		}
-		specificity 2;
-
-		act moveLeft(id);
-	}
-
+	
 	/**
 	 * Moves the bot right if the player to the right of the bot.
 	 */

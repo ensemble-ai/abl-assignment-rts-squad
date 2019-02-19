@@ -34,13 +34,28 @@ public class BotWME extends WME {
 	private Boolean tracked;
 	/**
 	 * Instantiates a working memory element for tracking a bot.
+	 * @param color 
 	 */
-	public BotWME(Point location, Point trajectory, int id, Boolean tracked) {
+	private Color color;
+	
+	private Point form;
+	
+	public BotWME(Point location, Point trajectory, int id, Boolean tracked, Color color) {
 		this.location = location;
 		this.trajectory = trajectory;
 		this.id = id;
 		this.tracked = tracked;
+		this.color = color;
+		this.form = form;
 	}
+	public int getFormX() {
+		return form.x;
+	}
+	
+	public int getFormY() {
+		return form.y;
+	}
+	
 	
 	/**
 	 * Returns the x location of the bot. 
@@ -83,5 +98,11 @@ public class BotWME extends WME {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(int r, int g, int b) {
+		this.color = new Color (r,g,b);
 	}
 }

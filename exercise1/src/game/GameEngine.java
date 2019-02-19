@@ -111,10 +111,31 @@ public class GameEngine extends JPanel implements KeyListener {
 		this.initializeInputs();
 		
 		//spawn a single default bot
-		Bot b = new Bot();
-		b.setLocation(new Point(dimensions.x/2, dimensions.y/2));
-		bots.add(b);
-		
+			Bot b = new Bot();
+			b.setLocation(new Point(dimensions.x/2, dimensions.y/2));
+			b.setColor(255, 0, 0);
+			
+			Bot c = new Bot();
+			c.setLocation(new Point(dimensions.x/3, dimensions.y/2));
+			c.setColor(0, 255, 0);
+			
+			Bot d = new Bot();
+			d.setLocation(new Point(dimensions.x/4, dimensions.y/2));
+			d.setColor(255, 255, 0);
+			
+			Bot e = new Bot();
+			e.setLocation(new Point(dimensions.x/5, dimensions.y/2));
+			e.setColor(255, 0, 255);
+			
+			
+			bots.add(b);
+			bots.add(c);
+			bots.add(d);
+			bots.add(e);
+			
+			
+			
+	
 		//spawn 3 new default bots with their input locations 
 		
 		
@@ -254,23 +275,38 @@ public class GameEngine extends JPanel implements KeyListener {
 
 		playerLocation = new Point(playerX, playerY);
 
-		// update bot locations
+		// update bot locations to maintain formation
 		for(Bot b : this.bots) {
-			int botX = b.getLocation().x + b.getTrajectory().x;
-			botX = Math.max(0, botX);
-			botX = Math.min(dimensions.x, botX);
+			// put condition to maintain formation
+			if((b.getLocation().x - playerX > 20) && (b.getLocation().y - playerY) > 20) {
+				int botX = 2*(b.getLocation().x - playerX + b.getTrajectory().x);
+				botX = Math.max(0, botX);
+				botX = Math.min(dimensions.x, botX);
 
-			int botY = b.getLocation().y + b.getTrajectory().y;
-			botY = Math.max(0, botY);
-			botY = Math.min(dimensions.y, botY);
+				int botY = 2*(b.getLocation().y - playerY + b.getTrajectory().y);
+				botY = Math.max(0, botY);
+				botY = Math.min(dimensions.y, botY);
 
-			b.setLocation(new Point(botX, botY));
+				b.setLocation(new Point(botX, botY));
+				b.setForm(new Point(botX, botY));
+			}
+			else {
+					int botX = b.getLocation().x + b.getTrajectory().x;
+					botX = Math.max(0, botX);
+					botX = Math.min(dimensions.x, botX);
+
+					int botY = b.getLocation().y + b.getTrajectory().y;
+					botY = Math.max(0, botY);
+					botY = Math.min(dimensions.y, botY);
+
+					b.setLocation(new Point(botX, botY));
+					b.setForm(new Point(botX, botY));
+			}
 		}
-		
-		
 	}
-
-	/**
+	
+	 //update formation of bots
+		/**
 	 * Sets the trajectory of the chaser object.
 	 *
 	 * Note: This is invoked via ABL physical acts
